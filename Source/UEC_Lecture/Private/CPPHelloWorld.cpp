@@ -20,7 +20,18 @@ void ACPPHelloWorld::BeginPlay()
 	//PrintfStringノードと同じ処理
 	//UKismetSystemLibraryクラスのPrintString関数を呼び出す
 	UKismetSystemLibrary::PrintString(this, "C++ Hello World", true, true, FColor::Cyan, 2.f);
+
+
+	// Output Logに文字列を出力するマクロ
+	UE_LOG(LogTemp, Display, TEXT("Display Message"));
+	UE_LOG(LogTemp, Warning, TEXT("Warning Message"));
+	UE_LOG(LogTemp, Error, TEXT("Error Message"));
+
+	// Viewportの左上に文字列を出力する関数
+	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::White, "C++ Hello World!", true, FVector2D(2.0f, 2.0f));
 }
+
+
 
 // Called every frame
 void ACPPHelloWorld::Tick(float DeltaTime)
