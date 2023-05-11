@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "CPPComponet.h"
+#include"CPPConstrutioScript.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 
 // Called when the game starts or when spawned
-void ACPPComponet::BeginPlay()
+void ACPPConstrutioScript::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -20,7 +20,7 @@ void ACPPComponet::BeginPlay()
 
 }
 
-ACPPComponet::ACPPComponet()
+ACPPConstrutioScript::ACPPConstrutioScript()
 {
 	//SceneComponent‚ğì¬‚·‚é
 	DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
@@ -35,7 +35,7 @@ ACPPComponet::ACPPComponet()
 	//StaticMesh‚ğLaod‚µ‚ÄStaticMeshComponent‚ÌStaticMesh‚Éİ’è‚·‚é
 	UStaticMesh* Mesh = LoadObject<UStaticMesh>(NULL, TEXT("/Engine/BasicShapes/Cube1"), NULL, LOAD_None, NULL);
 	StaticMesh->SetStaticMesh(Mesh);
-	
+
 	//StaticMeshComponent‚ğRootComponent‚ÉAttach‚·‚é
 	StaticMesh->SetupAttachment(RootComponent);
 
@@ -58,3 +58,14 @@ ACPPComponet::ACPPComponet()
 	PointLight->SetupAttachment(StaticMesh);
 }
 
+void ACPPConstrutioScript::OnConstruction(const FTransform& Transfrom)
+{
+	//pointLight‚Ì•\¦E”ñ•\¦‚ğİ’è‚·‚é
+	PointLight->SetVisibility(bIsVisible);
+
+	//pointLIght‚Ì‹­‚³‚ğİ’è
+	PointLight->SetIntensity(Intensity);
+
+	//PointLight‚Ì‹­‚³‚ğİ’è‚·‚é
+	PointLight->SetLightColor(LightColor);
+}
